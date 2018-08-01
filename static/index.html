@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>ipxer.com</title>
+</head>
+
+<body>
+    <main role="main" class="container">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+            <a id="logo" href="/">ipxer.com/</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="query form-inline my-2 my-lg-0 d-inline w-100 ">
+                    <div class="input-group">
+                        <input class="queryValue form-control form-control-lg" type="search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-danger" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        <div class="about">
+            <h4>About</h4>
+            <table class="table about-table table-sm table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <th style="width: 90px">Contact</th>
+                        <td><a href="https://twitter.com/tvldz">@tvldz</a></td>
+                    </tr>
+                    <tr>
+                        <th>Notes</th>
+                        <td>This product includes GeoLite2 data created by MaxMind, available from <a href="http://www.maxmind.com">http://www.maxmind.com</a>.</p>IP to ASN information provided by <a href="http://www.team-cymru.org/IP-ASN-mapping.html">Team Cymru</a>.</td>
+                    </tr>
+                    <tr>
+                        <th>Donations</th>
+                        <td><b>ETH:</b>0xD9614A0C6f74BcAf6608D1F2DF006c914bA06757
+                            <br><b>BTC:</b>3KvfwqM3DLzw4rYZt1667FHfmi3V7zSiMa
+                            <br><b>XLM:</b>GCJWPDRXB64PLAGYE6D3NHYCH6KFQLNX5GWMB5BGQXHK33KPLKYRQWDE</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="results ip-results">
+            <h4>IP Information</h4>
+            <table class="table ip-table table-sm table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <th style="width: 140px">AS</th>
+                        <td class="as ipanswer"></td>
+                    </tr>
+                    <tr>
+                        <th>AS Name</th>
+                        <td class="asname ipanswer"></td>
+                    </tr>
+                    <tr>
+                        <th>BGP Prefix</th>
+                        <td class="bgpprefix ipanswer"></td>
+                    </tr>
+                    <tr>
+                        <th>Registry</th>
+                        <td class="registry ipanswer"></td>
+                    </tr>
+                    <tr>
+                        <th>Allocation Date</th>
+                        <td class="allocationdate ipanswer"></td>
+                    </tr>
+                    <tr>
+                        <th>Country</th>
+                        <td class="country ipanswer"></td>
+                    </tr>
+                    <tr>
+                        <th>Subdivision</th>
+                        <td class="subdivision ipanswer"></td>
+                    </tr>
+                    <tr>
+                        <th>City</th>
+                        <td class="city ipanswer"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4>PTR</h4>
+            <table class="ptr-table table ip-table table-sm table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">Type</th>
+                        <th>Domain Name</th>
+                        <th style="width: 10%">TTL</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="results dns-results">
+            <h4>A</h4>
+            <table class="a-table table dns-table table-sm table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">Type</th>
+                        <th>Address</th>
+                        <th style="width: 10%">TTL</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <h4>AAAA</h4>
+            <table class="aaaa-table table dns-table table-sm table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">Type</th>
+                        <th>Address</th>
+                        <th style="width: 10%">TTL</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <h4>MX</h4>
+            <table class="mx-table table dns-table table-sm table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">Type</th>
+                        <th>Host</th>
+                        <th style="width: 20%">Preference</th>
+                        <th style="width: 10%">TTL</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <h4>NS</h4>
+            <table class="ns-table table dns-table table-sm table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">Type</th>
+                        <th>Result</th>
+                        <th style="width: 10%">TTL</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <h4>TXT</h4>
+            <table class="txt-table table dns-table table-sm table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">Type</th>
+                        <th>Result</th>
+                        <th style="width: 10%">TTL</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <footer class="fixed-bottom container">
+            <nav class="navbar navbar-light bg-light">
+                <a class="ipxer-footer" href="/about">About</a>
+            </nav>
+        </footer>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="/static/ipxer.js"></script>
+</body>
+
+</html>
