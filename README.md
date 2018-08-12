@@ -1,5 +1,5 @@
 # ipxer
-IP Address and DNS Exploration Tool
+IP Address and Domain Exploration Tool
 
 This code runs [ipxer.com](https://ipxer.com).
 
