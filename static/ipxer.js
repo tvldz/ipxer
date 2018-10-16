@@ -32,6 +32,7 @@ function populateIPtable(query) {
     $(".ip-table").hide();
     $(spinner).insertBefore(".ip-table");
     $(spinner).insertBefore(".ptr-table");
+    $(spinner).insertAfter(".reputation-table");
     $(".ip-results").show();
     $.getJSON('/api/ipv4/' + query, function(data) {
         if (data["error"]) {
@@ -50,6 +51,7 @@ function populateIPtable(query) {
         $(".ip-table").show();
         $(".ip-table").prev(".spinner").remove();
         $(".ptr-table").prev(".spinner").remove();
+        //$(".reputation-table").prev(".spinner").remove();
     });
 
     $.getJSON('/api/ptr/' + query, function(data) {
@@ -69,6 +71,21 @@ function populateIPtable(query) {
     }).done(function() {
         $(".ptr-table").show();
         $(".ptr-table").prev(".spinner").remove();
+    });
+
+    $.getJSON('/api/ipv4/otx/' + query, function(data) {
+        if (data["error"]) {
+            $(".reputation-table").find("tbody").append('<td colspan="3">' + data.error + '</td>');
+        } else {
+                var $tr = $('<tr>').append(
+                    $('<td>').text('OTX'),
+                    $('<td>').html('<a href="https://otx.alienvault.com/indicator/ip/' + query + '" target="_blank">' + data.otx_threat_score + ' out of 7</a>'),
+                );
+                $(".reputation-table").find("tbody").empty().append($tr)
+        }
+    }).done(function() {
+        $(".reputation-table").show();
+        $(".reputation-table").next(".spinner").remove();
     });
 
 }
