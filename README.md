@@ -11,3 +11,5 @@ Sometimes interesting things can be found: https://ipxer.com/google-public-dns-a
 Domains: `/api/{a,aaaa,mx,ns,txt}/{example.com}`
 
 IPs: `/api/{ipv4,ptr}/{8.8.8.8}`
+
+Open Threat Exchange (OTX) Reputation: `/api/ipv4/otx/{8.8.8.8}`
