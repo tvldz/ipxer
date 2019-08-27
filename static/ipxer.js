@@ -220,7 +220,7 @@ if ("onhashchange" in window && window.location.pathname != '/' && window.locati
 if (window.location.pathname == '/') {
     $(".about").hide();
     $(".results").hide();
-    $(".queryValue").attr("placeholder", "example.com");
+    $(".queryValue").attr("placeholder", "example.com, 8.8.8.8");
 } else {
     $(".queryValue").attr("placeholder", window.location.pathname.substr(1));
 }
