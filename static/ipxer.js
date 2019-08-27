@@ -78,7 +78,7 @@ function populateIPtable(query) {
             $(".reputation-table").find("tbody").append('<td colspan="3">' + data.error + '</td>');
         } else {
                 var $tr = $('<tr>').append(
-                    $('<td>').text('OTX'),
+                    $('<td>').text('Open Threat Exchange'),
                     $('<td>').html('<a href="https://otx.alienvault.com/indicator/ip/' + query + '" target="_blank">' + data.otx_threat_score + ' out of 7</a>'),
                 );
                 $(".reputation-table").find("tbody").empty().append($tr)
