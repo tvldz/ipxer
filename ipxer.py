@@ -9,6 +9,7 @@ import geoip2.database
 import configparser
 import requests
 import json
+import base64
 
 app = Flask(__name__)
 api = Api(app)
@@ -18,7 +19,9 @@ config.read('config.ini')
 
 reader = geoip2.database.Reader(config['settings']['geo_lite_location'])
 otx_header = {'X-OTX-API-KEY': config['settings']['otx_key']}
-
+xforce_auth = '{}:{}'.format(config['settings']['x-force_key'],config['settings']['x-force_pass'])
+xforce_auth = base64.b64encode(xforce_auth.encode()).decode('ascii')
+xforce_header = {'Accept': 'application/json','Authorization': 'Basic {}'.format(xforce_auth)}
 
 class ResolverAPI(Resource):
 	def get(self,record_type,name):
@@ -137,11 +140,11 @@ class IpInfo(Resource):
 
 class Root(Resource):
 	def get(self):
-		return send_file('index2.html')
+		return send_file('static/index.html')
 
 class Query(Resource):
 	def get(self, query):
-		return send_file('index2.html')
+		return send_file('static/index.html')
 
 # temp classes for serving static files
 class IpxerJS(Resource):
@@ -164,7 +167,7 @@ class OtxReputation(Resource):
 			return {'error': 'Invalid IPv4 Address'}
 
 		try:
-			r = requests.get('https://otx.alienvault.com/api/v1/indicators/IPv4/' + ipv4_address + '/reputation/', headers=otx_header)
+			r = requests.get('https://otx.alienvault.com/api/v1/indicators/IPv4/' + ipv4_address + '/reputation/', headers=xforce_header)
 			json_response = r.json()
 			if json_response['reputation'] == None:
 				return {'otx_threat_score': 0}
@@ -173,7 +176,28 @@ class OtxReputation(Resource):
 		except:
 			return {'error': "Internal Server Error"}
 
+class XForceReputation(Resource):
+        def get(self,ipv4_address):
+                # test if valid IP address
+                try:
+                        ip = ipaddress.ip_address(ipv4_address)
+                except:
+                        return {'error': 'Invalid IPv4 Address'}
+                if (type(ip) is ipaddress.IPv6Address):
+                        return {'error': 'Invalid IPv4 Address'}
 
+                try:
+                        r = requests.get('https://api.xforce.ibmcloud.com/ipr/' + ipv4_address, headers=xforce_header)
+                        json_response = r.json()
+                        if json_response['score'] == None:
+                                return {'xforce_threat_score': 0}
+                        else:
+                                return {'xforce_threat_score': json_response['score']}
+                except:
+                        return {'error': "Internal Server Error"}
+
+
+api.add_resource(XForceReputation,'/api/ipv4/xforce/<string:ipv4_address>')
 api.add_resource(OtxReputation, '/api/ipv4/otx/<string:ipv4_address>')
 api.add_resource(IpInfo, '/api/ipv4/<string:ipv4_address>')
 api.add_resource(ResolverAPI, '/api/<string:record_type>/<string:name>')
