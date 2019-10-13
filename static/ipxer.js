@@ -75,13 +75,28 @@ function populateIPtable(query) {
 
     $.getJSON('/api/ipv4/otx/' + query, function(data) {
         if (data["error"]) {
-            $(".reputation-table").find("tbody").append('<td colspan="3">' + data.error + '</td>');
+            $(".reputation-table").find("tbody").append('<td colspan="5">' + data.error + '</td>');
         } else {
                 var $tr = $('<tr>').append(
-                    $('<td>').text('Open Threat Exchange'),
+                    $('<td>').text('Alien Labs Open Threat Exchange'),
                     $('<td>').html('<a href="https://otx.alienvault.com/indicator/ip/' + query + '" target="_blank">' + data.otx_threat_score + ' out of 7</a>'),
                 );
                 $(".reputation-table").find("tbody").empty().append($tr)
+        }
+    }).done(function() {
+        $(".reputation-table").show();
+        //$(".reputation-table").next(".spinner").remove();
+    });
+
+    $.getJSON('/api/ipv4/xforce/' + query, function(data) {
+        if (data["error"]) {
+            $(".reputation-table").find("tbody").append('<td colspan="5">' + data.error + '</td>');
+        } else {
+                var $tr = $('<tr>').append(
+                    $('<td>').text('IBM X-Force Exchange'),
+                    $('<td>').html('<a href="https://exchange.xforce.ibmcloud.com/ip/' + query + '" target="_blank">' + data.xforce_threat_score + ' out of 10</a>'),
+                );
+                $(".reputation-table").find("tbody").append($tr)
         }
     }).done(function() {
         $(".reputation-table").show();
