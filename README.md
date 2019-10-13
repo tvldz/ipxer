@@ -13,4 +13,5 @@ Domains: `/api/{a,aaaa,mx,ns,txt}/{example.com}`
 IPs: `/api/{ipv4,ptr}/{8.8.8.8}`
 
 Alien Labs Open Exchange (OTX) IP Reputation: `/api/ipv4/otx/{8.8.8.8}`
+
 IBM X-Force Exchange IP Reputation: `/api/ipv4/xforce/{8.8.8.8}`
